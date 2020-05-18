@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+            </tr>
+            <tr th:each="appUser : ${appUserList}">
+                <td th:text="${appUser.firstName}"></td>
+                <td th:text="${appUser.lastName}"></td>
+                <td th:text="${appUser.email}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

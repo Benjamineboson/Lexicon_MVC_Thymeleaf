@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/create/process}" method="post" th:object="${form}">
+            <label>First name</label>
+            <input class="form-control" id="firstName" name="firstName" th:field="*{firstName}">
+
+            <label>Last name</label>
+            <input class="form-control" id="lastName" name="lastName" th:field="*{lastName}">
+
+            <label>Email</label>
+            <input class="form-control" id="email" name="email" th:field="*{email}">
+
+            <label>Address</label>
+            <input class="form-control" id="address" name="address" th:field="*{address}">
+
+            <label>Phone number</label>
+            <input class="form-control" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}">
+
+            <input class="btn btn-sm btn-primary" type="submit">
+        </form>
+    </div>
+</body>
+</html>
