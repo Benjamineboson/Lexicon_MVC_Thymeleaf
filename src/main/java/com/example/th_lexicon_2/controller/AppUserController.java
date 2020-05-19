@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +41,20 @@ public class AppUserController {
 
     @PostMapping("/create/process")
     public String postCreateAppUserForm(@Valid @ModelAttribute("form") CreateAppUserForm form, BindingResult bindingResult){
+
+        if (dao.findByEmail(form.getEmail()).isPresent()){
+            FieldError error = new FieldError(
+                    "form",
+                    "email",
+                    "User with email "+form.getEmail()+" already exists"
+            );
+            bindingResult.addError(error);
+        }
+
+        if (bindingResult.hasErrors()){
+            return "create-view";
+        }
+
         AppUser newAppUser = new AppUser(
                 form.getFirstName(),
                 form.getLastName(),

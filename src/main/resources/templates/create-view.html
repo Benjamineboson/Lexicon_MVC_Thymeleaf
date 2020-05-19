@@ -11,14 +11,40 @@
 <body>
     <div class="container">
         <form th:action="@{/create/process}" method="post" th:object="${form}">
+
+
             <label>First name</label>
             <input class="form-control" id="firstName" name="firstName" th:field="*{firstName}">
+            <div th:if="${#fields.hasErrors('firstName')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('firstName')}">
+                        <span th:text="${error}"></span>
+                    </li>
+                </ul>
+            </div>
 
             <label>Last name</label>
             <input class="form-control" id="lastName" name="lastName" th:field="*{lastName}">
+            <div th:if="${#fields.hasErrors('lastName')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('lastName')}">
+                        <span th:text="${error}"></span>
+                    </li>
+                </ul>
+            </div>
+
 
             <label>Email</label>
             <input class="form-control" id="email" name="email" th:field="*{email}">
+            <div th:if="${#fields.hasErrors('email')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('email')}">
+                        <span th:text="${error}"></span>
+                    </li>
+                </ul>
+            </div>
+
+
 
             <label>Address</label>
             <input class="form-control" id="address" name="address" th:field="*{address}">
