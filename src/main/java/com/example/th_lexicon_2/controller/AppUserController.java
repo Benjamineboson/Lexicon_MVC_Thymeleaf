@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -63,6 +61,18 @@ public class AppUserController {
                 form.getPhoneNumber()
         );
         dao.create(newAppUser);
+        return "redirect:/list";
+    }
+
+    @GetMapping("list/{id}")
+    public String getAppUserDetails(@PathVariable int id, Model model){
+        model.addAttribute("appUser",dao.findById(id));
+        return "details";
+    }
+
+    @PostMapping("/delete")
+    public String deleteUser(@RequestParam int id){
+        dao.delete(id);
         return "redirect:/list";
     }
 }
